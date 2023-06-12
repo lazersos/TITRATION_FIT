@@ -8,7 +8,7 @@ setup(name='TITRATION_FIT',
 	author = 'Samuel A. Lazerson',
 	author_email = 'lazersos@gmail.com',
 	url = 'http://github.com:lazersos/TITRATION_FIT',
-	py_modules=['titration_fit','scipy','matplotlib'],
+	py_modules=['titration_fit'],
 	scripts = ['titration_fit.py'],
 	install_requires=['numpy','scipy','matplotlib']
 	)

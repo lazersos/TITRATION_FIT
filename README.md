@@ -10,3 +10,13 @@ The setup script (if it works on your machine) should install these automaticall
 or
 
 `python3 setup.py install --user`
+
+# Running the code
+The code takes a two column CSV file with the first column being your ordinate in mL and the second column being the abscissa in mV.
+
+`./titration_fit.py --file myfile.csv`
+
+or 
+
+`./titration_fit.py --help`
+

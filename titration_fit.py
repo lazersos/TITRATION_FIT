@@ -114,6 +114,14 @@ class TITRATION():
 		bounds =([min(self.ydata),min(self.xdata),1E-6,-5,0],[2.*max(self.ydata),max(self.xdata),max(self.xdata)-min(self.xdata),5,max(self.ydata)])
 		p0 = np.array([max(self.ydata),np.mean(self.xdata),1,-0.01,10])
 		popt, pcov = curve_fit(self.fit_func, self.xdata, self.ydata,p0=p0,bounds=bounds)
+		residuals = self.ydata- self.fit_func(self.xdata, *popt)
+		ss_res = np.sum(residuals**2)
+		ss_tot = np.sum((self.ydata-np.mean(self.ydata))**2)
+		self.r_squared = 1 - (ss_res / ss_tot)
+		#print(r_squared)
+		#perr = np.sqrt(np.diag(pcov))
+		#print(popt)
+		#print(perr)
 		self.coefs = popt
 
 	def calcTitrationPoint(self):
@@ -235,8 +243,13 @@ class TITRATION():
             xytext=(85, -45), textcoords='offset points',
             arrowprops=dict(facecolor='black', shrink=0.05),
             horizontalalignment='right', verticalalignment='bottom')
+		plt.ylim(bottom=1.4*min(self.ydata),top=1.4*max(self.ydata))
+		bottom, top = plt.ylim()
+		left, right = plt.xlim()
+		print(bottom,top,left,right)
+		plt.text((right-left)*0.01,(top-bottom)*0.07+bottom,r'$f(x)=\frac{a}{2}(1-\tanh(\frac{x-b}{c}))+dx+e$')
+		plt.text((right-left)*0.01,(top-bottom)*0.01+bottom,r'$R^2$: %4.4f'%(self.r_squared))
 		# Cleanup the plot
-		plt.ylim(bottom=0,top=1.4*max(self.ydata))
 		plt.xlabel(self.XLabel)
 		plt.ylabel(self.YLabel)
 		plt.legend()

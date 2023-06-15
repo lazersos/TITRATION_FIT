@@ -7,7 +7,7 @@ setup(name='TITRATION_FIT',
 		'software fitting titration data. ',
 	author = 'Samuel A. Lazerson',
 	author_email = 'lazersos@gmail.com',
-	url = 'http://github.com:lazersos/TITRATION_FIT',
+	url = 'http://github.com/lazersos/TITRATION_FIT',
 	py_modules=['titration_fit'],
 	scripts = ['titration_fit.py'],
 	install_requires=['numpy','scipy','matplotlib']
